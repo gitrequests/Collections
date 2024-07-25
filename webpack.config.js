@@ -1,6 +1,5 @@
 const path = require('path');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = (env, options) => {
     const isProd = options.mode === 'production';
@@ -10,7 +9,6 @@ module.exports = (env, options) => {
         devtool: isProd ? false : 'source-map',
 
         entry: [
-            '@babel/polyfill',
             './_build/assets/sass/collections.scss',
             './_build/assets/js/index.ts'
         ],
@@ -44,7 +42,11 @@ module.exports = (env, options) => {
                             loader: MiniCssExtractPlugin.loader
                         },
                         {
-                            loader: "css-loader?url=false",
+                            loader: "css-loader",
+                            options: {
+                                url: false,
+                                sourceMap: true
+                            }
                         },
                         {
                             loader: "postcss-loader"
@@ -64,12 +66,13 @@ module.exports = (env, options) => {
             alias: {
             },
             extensions: [ '.ts', '.js' ],
+            fallback: {
+                "path": require.resolve("path-browserify"),
+                "url":  require.resolve("url/"),
+            }
         },
 
         plugins: [
-            isProd ? new CleanWebpackPlugin({
-                cleanOnceBeforeBuildPatterns: ['fred_integration.*']
-            }) : () => {},
             new MiniCssExtractPlugin({
                 filename: "fred_integration.css"
             })
