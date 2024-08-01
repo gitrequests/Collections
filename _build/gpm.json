@@ -1,119 +1,118 @@
 {
-  "name": "Collections",
-  "lowCaseName": "collections",
-  "namespace": "Collections",
-  "description": "Hides resources under this container in tree. Adding grid int o the update resource panel.",
-  "author": "John Peca",
-  "version": "4.1.0-pl",
-  "menus": [
-    {
-      "text": "collections.menu.collection_templates",
-      "description": "collections.menu.collection_templates_desc",
-      "action": "home"
-    }
-  ],
-  "plugins": [
-    {
-      "name": "Collections",
-      "events": [
-        "OnManagerPageInit",
-        "OnBeforeDocFormSave",
-        "OnResourceBeforeSort",
-        "OnDocFormPrerender",
-        "OnBeforeEmptyTrash",
-        "OnDocFormRender",
-        "OnManagerPageBeforeRender",
-        "FredOnBeforeGetResourceTree",
-        "FredBeforeRender",
-        "OnResourceDuplicate"
-      ]
-    }
-  ],
-  "snippets": [
-    {
-      "name": "getSelections"
-    }
-  ],
-  "systemSettings": [
-    {
-      "key": "mgr_date_format",
-      "area": "manager",
-      "value": "M d"
-    },
-    {
-      "key": "mgr_time_format",
-      "area": "manager",
-      "value": "g:i a"
-    },
-    {
-      "key": "mgr_datetime_format",
-      "area": "manager",
-      "value": "M d, g:i a"
-    },
-    {
-      "key": "user_js",
-      "area": "manager",
-      "value": ""
-    },
-    {
-      "key": "user_css",
-      "area": "manager",
-      "value": ""
-    },
-    {
-      "key": "mgr_tree_icon_collectioncontainer",
-      "area": "manager",
-      "value": "collectioncontainer",
-      "namespace": "core"
-    },
-    {
-      "key": "mgr_tree_icon_selectioncontainer",
-      "area": "manager",
-      "value": "selectioncontainer",
-      "namespace": "core"
-    },
-    {
-      "key": "renderer_image_path",
-      "area": "manager",
-      "value": ""
-    },
-    {
-      "key": "tree_tbar_collection",
-      "area": "manager",
-      "type": "combo-boolean",
-      "value": 0
-    },
-    {
-      "key": "tree_tbar_selection",
-      "area": "manager",
-      "type": "combo-boolean",
-      "value": 0
-    }
-  ],
-  "database": {
-    "tables": [
-      "\\Collections\\Model\\CollectionSetting",
-      "\\Collections\\Model\\CollectionTemplate",
-      "\\Collections\\Model\\CollectionTemplateColumn",
-      "\\Collections\\Model\\CollectionResourceTemplate",
-      "\\Collections\\Model\\CollectionSelection"
-    ]
-  },
-  "build": {
-    "scriptsBefore": [
-      "resolve.fixoldcollections.php",
-      "resolve.customevents.php",
-      "resolve.switchback.php"
+    "name": "Collections",
+    "lowCaseName": "collections",
+    "namespace": "Collections",
+    "description": "Hides resources under this container in tree. Adding grid int o the update resource panel.",
+    "author": "John Peca",
+    "version": "4.1.0-pl",
+    "menus": [
+        {
+            "text": "collections.menu.collection_templates",
+            "description": "collections.menu.collection_templates_desc",
+            "action": "home"
+        }
     ],
-    "scriptsAfter": [
-      "resolve.updatefromfirst.php",
-      "resolve.defaulttemplate.php",
-      "resolve.fixselections.php",
-      "resolve.fixsystemsettings.php"
+    "plugins": [
+        {
+            "name": "Collections",
+            "events": [
+                "OnManagerPageInit",
+                "OnBeforeDocFormSave",
+                "OnResourceBeforeSort",
+                "OnDocFormPrerender",
+                "OnBeforeEmptyTrash",
+                "OnDocFormRender",
+                "OnManagerPageBeforeRender",
+                "FredOnBeforeGetResourceTree",
+                "FredBeforeRender",
+                "OnResourceDuplicate"
+            ]
+        }
     ],
-    "requires": {
-        "gpm": ">=3.0.0",
-        "modx": ">=3.0.0-alpha"
+    "snippets": [
+        {
+            "name": "getSelections"
+        }
+    ],
+    "systemSettings": [
+        {
+            "key": "mgr_date_format",
+            "area": "manager",
+            "value": "M d"
+        },
+        {
+            "key": "mgr_time_format",
+            "area": "manager",
+            "value": "g:i a"
+        },
+        {
+            "key": "mgr_datetime_format",
+            "area": "manager",
+            "value": "M d, g:i a"
+        },
+        {
+            "key": "user_js",
+            "area": "manager",
+            "value": ""
+        },
+        {
+            "key": "user_css",
+            "area": "manager",
+            "value": ""
+        },
+        {
+            "key": "mgr_tree_icon_collectioncontainer",
+            "area": "manager",
+            "value": "collectioncontainer",
+            "namespace": "core"
+        },
+        {
+            "key": "mgr_tree_icon_selectioncontainer",
+            "area": "manager",
+            "value": "selectioncontainer",
+            "namespace": "core"
+        },
+        {
+            "key": "renderer_image_path",
+            "area": "manager",
+            "value": ""
+        },
+        {
+            "key": "tree_tbar_collection",
+            "area": "manager",
+            "type": "combo-boolean",
+            "value": 0
+        },
+        {
+            "key": "tree_tbar_selection",
+            "area": "manager",
+            "type": "combo-boolean",
+            "value": 0
+        }
+    ],
+    "database": {
+        "tables": [
+            "\\Collections\\Model\\CollectionSetting",
+            "\\Collections\\Model\\CollectionTemplate",
+            "\\Collections\\Model\\CollectionTemplateColumn",
+            "\\Collections\\Model\\CollectionResourceTemplate",
+            "\\Collections\\Model\\CollectionSelection"
+        ]
+    },
+    "build": {
+        "scriptsBefore": [
+            "fixoldcollections.gpm.php",
+            "customevents.gpm.php",
+            "switchback.gpm.php"
+        ],
+        "scriptsAfter": [
+            "defaulttemplate.gpm.php",
+            "fixselections.gpm.php",
+            "fixsystemsettings.gpm.php"
+        ],
+        "requires": {
+            "gpm": ">=3.0.0",
+            "modx": ">=3.0.0-alpha"
+        }
     }
-  }
 }
