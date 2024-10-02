@@ -73,6 +73,8 @@ $linkedResourcesQuery->stmt->execute();
 
 $linkedResources = $linkedResourcesQuery->stmt->fetchAll(PDO::FETCH_COLUMN, 0);
 
+if (empty($linkedResources)) return '';
+
 if (!empty($excludeToPlaceholder)) {
     $excludeResources = [];
     foreach($linkedResources as $res) {
