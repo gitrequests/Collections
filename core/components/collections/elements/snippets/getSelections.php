@@ -73,8 +73,6 @@ $linkedResourcesQuery->stmt->execute();
 
 $linkedResources = $linkedResourcesQuery->stmt->fetchAll(PDO::FETCH_COLUMN, 0);
 
-if (empty($linkedResources)) return '';
-
 if (!empty($excludeToPlaceholder)) {
     $excludeResources = [];
     foreach($linkedResources as $res) {
@@ -89,12 +87,17 @@ $linkedResources = implode(',', $linkedResources);
 $properties = $scriptProperties;
 unset($properties['selections']);
 
-$properties['resources'] = $linkedResources;
 $properties['parents'] = ($properties['getResourcesSnippet'] == 'pdoResources') ? 0 : -1;
 
-if ($sortBy == '') {
-    $properties['sortby'] = 'FIELD(modResource.id, ' . $linkedResources . ' )';
-    $properties['sortdir'] = 'asc';
-}
+if (empty($linkedResources)) {
+    $properties['where'] = '2=1';
+} else {
+    $properties['resources'] = $linkedResources;
+    
+    if ($sortBy == '') {
+        $properties['sortby'] = 'FIELD(modResource.id, ' . $linkedResources . ' )';
+        $properties['sortdir'] = 'asc';
+    }
+};
 
 return $modx->runSnippet($getResourcesSnippet, $properties);
